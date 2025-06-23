@@ -1,0 +1,28 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit",
+    "source.organizeImports": "explicit"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "path-intellisense.autoSlashAfterDirectory": true,
+  "path-intellisense.autoTriggerNextSuggestion": true,
+  "path-intellisense.extensionOnImport": true,
+  "path-intellisense.ignoreTsConfigBaseUrl": false,
+  "prettier.configPath": "./configs/.prettierrc.js",
+  "javascript.preferences.importModuleSpecifier": "relative",
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "prettier.ignorePath": "./configs/.prettierignore",
+  "editor.tabSize": 2,
+  "githubPullRequests.ignoredPullRequestBranches": ["main"],
+  "sonarlint.connectedMode.project": {
+    "connectionId": "Adani One",
+    "projectKey": "adanione-ui"
+  }
+}
