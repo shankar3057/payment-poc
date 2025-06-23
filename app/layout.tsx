@@ -27,6 +27,7 @@ export default function RootLayout({
     <html lang="en">
       <Head>
         <script async src="https://pay.google.com/gp/p/js/pay.js"></script>
+        <script async src="https://img.mpay.samsung.com/gsmpi/sdk/samsungpay_web_sdk.js"></script>
       </Head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>{children}</body>
     </html>

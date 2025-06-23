@@ -81,15 +81,16 @@ const GooglePayButton = () => {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        paymentData,
+        paymentMethod: 'google',
         order: {
           amount: 70.2,
           currency: 'AED',
-          reference: 'NPORD12345',
           name: 'Test Order',
-          category: 'pay',
+          reference: 'NPORDTEST0001',
+          category: 'googlepay',
           channel: 'web',
         },
+        paymentData,
       }),
     });
 
@@ -97,11 +98,7 @@ const GooglePayButton = () => {
     console.log('Noon PG response:', result);
   };
 
-  return (
-    <div className="flex justify-center items-center h-screen bg-gray-50">
-      <div id="gpay-button" />
-    </div>
-  );
+  return <div id="gpay-button" />;
 };
 
 export default GooglePayButton;
