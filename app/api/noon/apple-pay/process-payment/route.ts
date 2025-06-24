@@ -52,6 +52,7 @@ export async function POST(req: NextRequest) {
         { status: 500 },
       );
     }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     console.error('🔴 Apple Pay PROCESS_AUTHENTICATION error:', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });

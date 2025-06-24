@@ -24,7 +24,7 @@ const ApplePay = () => {
 
     const session = new ApplePaySession(3, paymentRequest);
 
-    session.onvalidatemerchant = async (event) => {
+    session.onvalidatemerchant = async (event: { validationURL: string }) => {
       const res = await fetch('/api/noon/apple-pay/validate-merchant', {
         method: 'POST',
         body: JSON.stringify({ validationUrl: event.validationURL }),
@@ -34,7 +34,8 @@ const ApplePay = () => {
       session.completeMerchantValidation(data);
     };
 
-    session.onpaymentauthorized = async (event) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    session.onpaymentauthorized = async (event: { payment: any }) => {
       const res = await fetch('/api/noon/apple-pay/process-payment', {
         method: 'POST',
         body: JSON.stringify({ payment: event.payment }),

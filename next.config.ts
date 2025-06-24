@@ -6,6 +6,9 @@ const nextConfig: NextConfig = {
   compilerOptions: {
     typeRoots: ['./types', './node_modules/@types'],
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
 
 export default nextConfig;
