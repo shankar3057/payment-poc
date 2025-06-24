@@ -1,9 +1,11 @@
-// types/apple-pay.d.ts
-declare interface ApplePayJS {
-  version: number;
-  ApplePaySession: unknown;
+declare interface Window {
+  ApplePaySession?: typeof ApplePaySession;
 }
 
-interface Window {
-  ApplePaySession?: unknown;
-}
+declare let ApplePaySession: {
+  new (version: number, request: ApplePayJS.ApplePayPaymentRequest): ApplePayJS.ApplePaySession;
+  supportsVersion(version: number): boolean;
+  canMakePayments(): boolean;
+  STATUS_SUCCESS: number;
+  STATUS_FAILURE: number;
+};

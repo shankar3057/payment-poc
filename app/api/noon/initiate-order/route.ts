@@ -3,19 +3,17 @@ import { NextRequest, NextResponse } from 'next/server';
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    // console.log('📥 Received Body:', body);
 
-    // Extract payment method and data
     const { paymentMethod, order, paymentData } = body;
 
     if (!paymentMethod || !order || !paymentData) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
-    // Env variables
     const businessIdentifier = process.env.NEXT_PUBLIC_NOON_BUSINESS_ID;
     const applicationIdentifier = process.env.NOON_APP_ID;
     const applicationKey = process.env.NOON_API_KEY;
+    const baseUrl = process.env.NOON_API_BASE;
 
     if (!businessIdentifier || !applicationIdentifier || !applicationKey) {
       return NextResponse.json({ error: 'Missing Noon environment variables' }, { status: 500 });
@@ -24,9 +22,7 @@ export async function POST(req: NextRequest) {
     const basicAuth = `Key ${Buffer.from(`${businessIdentifier}.${applicationIdentifier}:${applicationKey}`).toString(
       'base64',
     )}`;
-    // console.log('🔐 Authorization Header:', { basicAuth, businessIdentifier, applicationIdentifier, applicationKey });
 
-    // Determine payment type string
     let paymentType: 'GooglePay' | 'SamsungPay';
 
     if (paymentMethod === 'google') {
@@ -46,12 +42,11 @@ export async function POST(req: NextRequest) {
       },
       configuration: {
         paymentAction: 'AUTHORIZE,SALE',
-        returnUrl: 'https://yourdomain.com/payment/response',
+        returnUrl: `http://localhost:3000/order-confirmation/orderId`,
       },
     };
-    console.log('🚀 ~ POST ~ noonPayload:', JSON.stringify(noonPayload, null, 2));
 
-    const response = await fetch('https://api-test.noonpayments.com/payment/v1/order', {
+    const response = await fetch(`${baseUrl}/order`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -62,6 +57,7 @@ export async function POST(req: NextRequest) {
 
     const data = await response.json();
     return NextResponse.json(data);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     console.error('❌ Error:', error);
     return NextResponse.json({ error: error.message || 'Internal server error' }, { status: 500 });

@@ -6,9 +6,11 @@ declare global {
   }
 }
 
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 const GooglePayButton = () => {
+  const router = useRouter();
   const [googleLoaded, setGoogleLoaded] = useState(false);
 
   useEffect(() => {
@@ -96,6 +98,12 @@ const GooglePayButton = () => {
 
     const result = await res.json();
     console.log('Noon PG response:', result);
+
+    if (result?.resultCode === 0) {
+      const orderId = result?.result?.order?.id;
+      // Redirect to confirmation page with orderId
+      router.push(`/order-confirmation/${orderId}`);
+    }
   };
 
   return <div id="gpay-button" />;
