@@ -39,6 +39,7 @@ export async function POST(req: NextRequest) {
     });
 
     const data = await response.json();
+    console.log('🚀 ~ Process-payment ~ data:', data);
 
     if (data?.result?.transaction?.status === 'SUCCESS') {
       return NextResponse.json({ success: true, transaction: data.result.transaction });
