@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
           currency: 'AED',
           name: 'Test Order',
           reference: 'NPORDTEST0001',
-          category: 'applepaypay', // ✅ correct based on Noon routes
+          category: 'reel_applepay_dubaimall', // ✅ correct based on Noon routes
           channel: 'web',
         },
         paymentData: {
