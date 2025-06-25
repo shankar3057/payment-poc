@@ -23,10 +23,10 @@ export async function POST(req: NextRequest) {
         apiOperation: 'PROCESS_AUTHENTICATION',
         order: {
           amount: 1.2,
-          currency: 'AED',
+          currency: 'SAR',
           name: 'Test Order',
           reference: 'NPORDTEST0001',
-          category: 'reel_applepay_dubaimall', // ✅ correct based on Noon routes
+          category: 'applepaypay', // ✅ correct based on Noon routes
           channel: 'web',
         },
         paymentData: {

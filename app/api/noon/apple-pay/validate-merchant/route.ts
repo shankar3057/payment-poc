@@ -27,10 +27,10 @@ export async function POST(req: NextRequest) {
       apiOperation: 'INITIATE',
       order: {
         amount: 1.2,
-        currency: 'AED',
+        currency: 'SAR',
         name: 'Test Order',
         reference: 'NPORDTEST0001',
-        category: 'reel_ applepay _dubaimall',
+        category: 'applepaypay',
         channel: 'web',
       },
       configuration: {
