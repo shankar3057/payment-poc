@@ -30,7 +30,7 @@ export async function POST(req: NextRequest) {
         currency: 'AED',
         name: 'Test Order',
         reference: 'NPORDTEST0001',
-        category: 'reel_applepay_dubaimall',
+        category: 'reel_ applepay _dubaimall',
         channel: 'web',
       },
       configuration: {
